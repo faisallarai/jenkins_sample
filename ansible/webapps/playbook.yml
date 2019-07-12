@@ -1,0 +1,12 @@
+---
+- hosts: all
+  gather_facts: false
+  remote_user: "{{ remote_user }}"
+  become: yes
+  tags:
+    - jenkins
+  roles:
+    - common
+    - java
+    - nginx
+    - jenkins

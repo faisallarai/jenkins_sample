@@ -1,0 +1,50 @@
+- name: Kestrel | Creating a application folder
+  file:
+    path: "{{ application_path }}"
+    state: directory
+    owner: ubuntu
+    group: ubuntu
+    mode: 0755
+    recurse: yes
+
+- name: Kestrel | Syncing application files
+  copy:
+    src: "{{ workspace }}"
+    dest: "{{ application_path }}"
+
+- name: Kestrel | Returning dll file
+  find:
+    paths: "{{ application_path }}"
+    patterns: '*.deps.json'
+  register: files_matched
+
+- name: Kestrel | Printing all return values of files found
+  debug:
+    msg: "{{ item.path | basename | replace('deps.json', 'dll') }}"
+  with_items:
+    - "{{ files_matched.files }}"
+
+- name: Kestrel | Creating unit file
+  template: 
+    src: kestrel.j2 
+    dest: /etc/systemd/system/kestrel.service
+    owner: ubuntu
+    group: ubuntu
+    mode: 0644
+  notify:
+    - reload-daemon
+    - restart-app
+  with_items:
+    - "{{ files_matched.files }}"
+
+- name: Kestrel | Checking if port 9052 is listening
+  wait_for:
+    port: 9052
+    delay: 10
+    timeout: 15
+    msg: "Timeout waiting for 9052 to respond"
+  register: is_port
+  ignore_errors: yes
+  notify:
+    - restart-app
+

@@ -1,0 +1,77 @@
+---
+#- name: Remove files
+#  become: yes
+#  command: "{{ item }}"
+#  with_items:
+#    - rm /var/cache/apt/archives/lock
+#    - rm /var/lib/apt/lists/lock
+#    - rm /var/lib/dpkg/lock
+#    - dpkg --configure -a
+#  args:
+#    warn: false
+
+#- name: Java | Installing java sdk
+#  become: yes
+#  apt:
+#    name: ['openjdk-8-jdk']
+#    state: latest
+#    update_cache: yes
+#    dpkg_options: 'force-confold,force-confdef'
+#    install_recommends: no
+
+#- name: Installing Nginx
+#  become: yes
+#  apt:
+#    name:  ['nginx']
+#    state: latest
+#    update_cache: yes
+
+- name: Jenkins | Installing apt key
+  become: yes
+  apt_key:
+    url: "https://pkg.jenkins.io/debian/jenkins-ci.org.key"
+    state: present
+
+- name: Jenkins | Configure repo
+  become: yes
+  apt_repository:
+    repo: "deb http://pkg.jenkins.io/debian-stable binary/"
+    state: present
+
+- name: Jenkins | Update APT package manager repositories cache
+  become: yes
+  apt:
+    update_cache: yes
+
+- name: Jenkins | Installing jenkins
+  become: yes
+  apt:
+    name: jenkins
+    state: latest
+    update_cache: yes
+
+- name: Jenkins | Ensure jenkins is running
+  service:
+    name: jenkins
+    state: started
+
+- name: Jenkins | Check if pwd exists
+  stat:
+    path: /var/lib/jenkins/secrets/initialAdminPassword
+  register: stat
+  changed_when: False
+
+- name: Debug
+  debug:
+    var: stat
+
+- name: Jenkins | View password
+  become: yes
+  shell: cat /var/lib/jenkins/secrets/initialAdminPassword
+  changed_when: false
+  register: result
+
+- name: Jenkins | Print password
+  debug:
+    var: result
+  

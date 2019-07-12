@@ -1,0 +1,12 @@
+---
+- name: Remove files
+  become: yes
+  command: "{{ item }}"
+  with_items:
+    - rm /var/cache/apt/archives/lock
+    - rm /var/lib/apt/lists/lock
+    - rm /var/lib/dpkg/lock
+    - dpkg --configure -a
+  args:
+    warn: false
+ 

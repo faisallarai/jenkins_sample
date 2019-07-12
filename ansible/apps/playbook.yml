@@ -1,0 +1,10 @@
+---
+- hosts: all
+  gather_facts: true
+  remote_user: "{{ remote_user }}"
+  become: yes
+  tags:
+    - apps
+  roles:
+    - ocha.dotnet-core
+    - kestrel

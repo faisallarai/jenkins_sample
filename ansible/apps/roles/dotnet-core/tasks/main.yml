@@ -1,0 +1,49 @@
+- name: Apps | Checking if package is installed
+  command: dpkg-query -W "{{package_name}}"
+  register: check_package
+  failed_when: check_package.rc > 1
+  changed_when: check_package.rc == 1
+          
+- name: Apps | Downloading package
+  become: yes
+  get_url:
+    url: "{{ package_src_url }}"
+    dest: "{{ package_dest_url }}{{ package_name }}"
+  when: check_package.rc == 1
+                        
+- name: DotnetCore | Installing package
+  become: yes
+  apt:
+    deb: "{{ package_dest_url }}{{ package_name }}"
+  when: check_package.rc == 1
+                    
+- name: DotnetCore | Debuging package installation
+  debug:
+    var: check_package---
+
+- name: DotnetCore | Adding universe repository
+  become: yes
+  command: add-apt-repository universe
+ 
+- name: DotnetCore | Installing transport package
+  become: yes
+  command: apt-get install apt-transport-https
+  args:
+    warn: false
+
+- name: DotnetCore | Updating the cache
+  become: yes
+  apt:
+    update_cache: yes
+
+- name: DotnetCore | Installing dotnet sdk-2.1
+  become: yes
+  command: apt-get install dotnet-sdk-"{{sdk_version}}"
+  args:
+    warn: false
+  register: sdk
+
+- name: DotnetCore | Logging dotnet sdk-2.1 installation
+  debug:
+    var: sdk
+

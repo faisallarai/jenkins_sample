@@ -1,0 +1,13 @@
+- name: reload-daemon
+  systemd:
+    name: kestrel.service
+    state: reloaded
+    daemon-reload: yes
+
+- name: restart-app
+  service:
+    name: kestrel.service
+    state: started
+    enabled: yes
+    #when:
+    #is_port.failed == true

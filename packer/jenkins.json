@@ -1,0 +1,50 @@
+{
+  "variables": {
+    "aws_access_key": "",
+    "aws_secret_key": "",
+    "region": "eu-west-1",
+    "ssh_username": "ubuntu",
+    "instance_type": "t2.micro"
+  },
+  "builders": [{
+    "type": "amazon-ebs",
+    "access_key": "{{user `aws_access_key`}}",
+    "secret_key": "{{user `aws_secret`}}",
+    "region": "eu-west-1",
+    "source_ami_filter": {
+      "filters": {
+        "virtualization-type": "hvm",
+	"name": "ubuntu/images/hvm-ssd/ubuntu-bionic-18.04-amd64-server-*",
+	"root-device-type": "ebs"
+      },
+      "owners": ["099720109477"],
+      "most_recent": true
+    },
+    "instance_type": "{{user `instance_type`}}",
+    "ssh_username": "{{ user `ssh_username`}}",
+    "ami_name": "hubtel-jenkins-image {{timestamp}}",
+    "run_tags": {
+      "Name": "Jenkins-Golden-Image"
+    },
+    "launch_block_device_mappings": [
+      {
+        "device_name": "/dev/sda1",
+	"volume_size": "30",
+	"volume_type": "standard",
+	"delete_on_termination": true
+      }
+    ],
+    "tags": {
+      "Name": "Jenkins-Golden-Image"
+    }
+  }],
+
+  "provisioners": 
+  [
+    {
+      "type": "ansible",
+      "playbook_file": "/home/ubuntu/hubtel_architecture/ansible/jenkins/playbook.yml",
+      "user": "{{user `ssh_username`}}"
+    }
+  ]
+}

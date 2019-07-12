@@ -1,0 +1,14 @@
+C:\Users\ProductMgr_170\Downloads\AspNetCore.Docs-master\aspnetcore\web-api\index\samples\2.x\bin\Release\netcoreapp2.2\WebApiSample.deps.json
+C:\Users\ProductMgr_170\Downloads\AspNetCore.Docs-master\aspnetcore\web-api\index\samples\2.x\bin\Release\netcoreapp2.2\WebApiSample.runtimeconfig.json
+C:\Users\ProductMgr_170\Downloads\AspNetCore.Docs-master\aspnetcore\web-api\index\samples\2.x\bin\Release\netcoreapp2.2\WebApiSample.runtimeconfig.dev.json
+C:\Users\ProductMgr_170\Downloads\AspNetCore.Docs-master\aspnetcore\web-api\index\samples\2.x\bin\Release\netcoreapp2.2\WebApiSample.dll
+C:\Users\ProductMgr_170\Downloads\AspNetCore.Docs-master\aspnetcore\web-api\index\samples\2.x\bin\Release\netcoreapp2.2\WebApiSample.pdb
+C:\Users\ProductMgr_170\Downloads\AspNetCore.Docs-master\aspnetcore\web-api\index\samples\2.x\obj\Release\netcoreapp2.2\WebApiSample.csprojAssemblyReference.cache
+C:\Users\ProductMgr_170\Downloads\AspNetCore.Docs-master\aspnetcore\web-api\index\samples\2.x\obj\Release\netcoreapp2.2\WebApiSample.csproj.CoreCompileInputs.cache
+C:\Users\ProductMgr_170\Downloads\AspNetCore.Docs-master\aspnetcore\web-api\index\samples\2.x\obj\Release\netcoreapp2.2\WebApiSample.RazorAssemblyInfo.cache
+C:\Users\ProductMgr_170\Downloads\AspNetCore.Docs-master\aspnetcore\web-api\index\samples\2.x\obj\Release\netcoreapp2.2\WebApiSample.RazorAssemblyInfo.cs
+C:\Users\ProductMgr_170\Downloads\AspNetCore.Docs-master\aspnetcore\web-api\index\samples\2.x\obj\Release\netcoreapp2.2\WebApiSample.AssemblyInfoInputs.cache
+C:\Users\ProductMgr_170\Downloads\AspNetCore.Docs-master\aspnetcore\web-api\index\samples\2.x\obj\Release\netcoreapp2.2\WebApiSample.AssemblyInfo.cs
+C:\Users\ProductMgr_170\Downloads\AspNetCore.Docs-master\aspnetcore\web-api\index\samples\2.x\obj\Release\netcoreapp2.2\WebApiSample.RazorTargetAssemblyInfo.cache
+C:\Users\ProductMgr_170\Downloads\AspNetCore.Docs-master\aspnetcore\web-api\index\samples\2.x\obj\Release\netcoreapp2.2\WebApiSample.dll
+C:\Users\ProductMgr_170\Downloads\AspNetCore.Docs-master\aspnetcore\web-api\index\samples\2.x\obj\Release\netcoreapp2.2\WebApiSample.pdb

@@ -1,0 +1,20 @@
+[Unit]
+Description=App
+
+[Service]
+WorkingDirectory={{ application_path }}
+ExecStart=/usr/bin/dotnet /media/data/application/{{ item.path | basename | replace('deps.json', 'dll')}} --server.urls=http://*:9052
+Restart=always
+# Restart service after 10 seconds if the dotnet service crashes:
+RestartSec=10
+KillSignal=SIGINT
+SyslogIdentifier=App
+User=www-data
+Environment=ASPNETCORE_ENVIRONMENT=Production
+Environment=DOTNET_PRINT_TELEMETRY_MESSAGE=false
+# # The default value is 90 seconds for most distributions.
+TimeoutStopSec=90
+
+[Install]
+WantedBy=multi-user.target
+#

@@ -1,0 +1,10 @@
+---
+- name: Java | Installing java sdk
+  become: yes
+  apt:
+    name: ['openjdk-8-jdk']
+    state: "{{java_package_state}}"
+    update_cache: yes
+    dpkg_options: 'force-confold,force-confdef'
+    install_recommends: no
+ 

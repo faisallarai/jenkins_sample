@@ -1,0 +1,11 @@
+---
+- name: Apps | Checking if package is installed
+  command: dpkg-query -W "{{package_name}}"
+  register: check_package
+  failed_when: check_package.rc > 1
+  changed_when: check_package.rc == 1
+
+- name: DotnetCore | Dotnet core package is already installed
+  debug:
+    var: check_package
+  when: check_package.rc == 1

@@ -1,0 +1,8 @@
+---
+- name: Installing Nginx
+  become: yes
+  apt:
+    name:  ['nginx']
+    state: "{{nginx_package_state}}"
+    update_cache: yes
+ 
